@@ -4,10 +4,11 @@
     <link rel='stylesheet' href='/styles/style.css' />
 </head>
 <body>
-    <h1>Hello World!</h1>
+    <h1>Trivia Game of Love</h1>
     <div id="future"></div>
     <form id="form chat_form">
-        <h1>Questions</h1>
+        <div>
+            <h2>Questions</h1>
             <h5>What is your favorite color?</h5>
             <div>
                 <button class="btn">Green</button>
@@ -17,10 +18,13 @@
                 <button class="btn">Yellow</button>
                 <button class="btn">Red</button>
             </div>
+        </div>
 
-        <h1>Chat</h1>
-        <input id="chat_input" type="text">
-        <input type="submit" value="Send">
+        <div>
+            <h2>Chat</h1>
+            <input id="chat_input" type="text">
+            <input type="submit" value="Send">
+        </div>
     </form>
     <script src="/jquery/dist/jquery.js"></script>
     <script src="/socket.io/socket.io.js"></script>
