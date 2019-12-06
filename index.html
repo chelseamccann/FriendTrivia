@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+    <link rel='stylesheet' href='/styles/style.css' />
 </head>
 <body>
     <h1>Hello World!</h1>
@@ -9,10 +9,14 @@
     <form id="form chat_form">
         <h1>Questions</h1>
             <h5>What is your favorite color?</h5>
-                <button>Green</button>
-                <button>Purple</button>
-                <button>Yellow</button>
-                <button>Red</button>
+            <div>
+                <button class="btn">Green</button>
+                <button class="btn">Purple</button>
+            </div>
+            <div>
+                <button class="btn">Yellow</button>
+                <button class="btn">Red</button>
+            </div>
 
         <h1>Chat</h1>
         <input id="chat_input" type="text">
@@ -20,6 +24,7 @@
     </form>
     <script src="/jquery/dist/jquery.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+
 </body>
 </html>
 
@@ -33,7 +38,9 @@
     //     alert(data);
     // });
     socket.on('broad', function(data){ // socket listener which updates our div with the message that was returned
-        $('#future').append(data+ "<br/>");
+        if (data){
+            $('#future').append(data+ "<br/>");
+        }
     });
 
     $('form').submit(function(e){ // event handler which prevent form submitting and instead sends message to server with values of input field
