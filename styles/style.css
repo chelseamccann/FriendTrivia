@@ -6,7 +6,7 @@ body{
 }
 
 .btn{
-    width: 100px;
+    width: 20rem;
     border-radius: 10px;
     font-size: 1.2rem;
     padding: 1rem 0;
@@ -29,6 +29,7 @@ body{
 .title{
     color: lightcoral;
     font-size: 40px;
+    padding-bottom: 1rem;
 }
 
 .container{
@@ -48,5 +49,13 @@ body{
 
 .home-btns{
     display:flex;
+    flex-direction: column;
     justify-content: space-between;
+}
+
+.btn:hover{
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 rgba(226, 89, 65, 0.774);
+    transform: translate(-0.1rem);
+    transition: transform 150ms;
 }
