@@ -1,9 +1,39 @@
+body{
+    background-color: lightgrey;
+    /* align-items: center;
+    display: flex;
+    flex-direction: column; */
+}
+
 .btn{
     width: 100px;
     padding: 20px;
     border-radius: 10px;
 }
 
+.btn:focus{
+    outline: none;
+}
+
 #form div{
     display: flex;
+}
+
+.title{
+    color: lightcoral;
+    font-size: 40px;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 80rem;
+}
+
+#future{
+    border: 1px solid lightcoral;
 }

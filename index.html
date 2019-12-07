@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel='stylesheet' href='/styles/reset.css' />
     <link rel='stylesheet' href='/styles/style.css' />
 </head>
 <body>
-    <h1>Trivia Game of Love</h1>
-    <div id="future"></div>
+    <div class="container">
+    <h1 class="title">Trivia Game of Love</h1>
+    
     <form id="form chat_form">
         <div>
+            <a class="links" href="/questions.html">Questions Page</a>
+            <a class="links" href="/scores.html">High Scores</a>
             <h2>Questions</h1>
             <h5>What is your favorite color?</h5>
             <div>
@@ -24,11 +28,12 @@
             <h2>Chat</h1>
             <input id="chat_input" type="text">
             <input type="submit" value="Send">
+            <div id="future"></div>
         </div>
     </form>
     <script src="/jquery/dist/jquery.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-
+    </div>
 </body>
 </html>
 
