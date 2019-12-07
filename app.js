@@ -33,4 +33,8 @@ io.on('connection', function(client){ // listening for connections
 
 });
 
-server.listen(4200);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, function() {
+    console.log(`Listening on Port ${PORT}`);
+  });
+// server.listen(4200);
