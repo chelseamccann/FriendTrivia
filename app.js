@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
+const PORT = process.env.PORT || 3000; // port listening for heroku
 
 app.use("/styles",express.static(__dirname + "/styles")); // allows stylesheets
 app.use(express.static(__dirname + '/node_modules'));
@@ -33,7 +34,6 @@ io.on('connection', function(client){ // listening for connections
 
 });
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {
     console.log(`Listening on Port ${PORT}`);
   });
