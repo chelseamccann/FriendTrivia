@@ -3,13 +3,6 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
-// set the port of our application
-// process.env.PORT lets the port be set by Heroku
-var port = process.env.PORT || 8080;
-
-// set the view engine to ejs
-app.set('view engine', 'ejs');
-
 app.use("/styles",express.static(__dirname + "/styles")); // allows stylesheets
 app.use(express.static(__dirname + '/node_modules'));
 
@@ -40,7 +33,4 @@ io.on('connection', function(client){ // listening for connections
 
 });
 
-// server.listen(4200);
-server.listen(port, function() {
-    console.log('Our app is running on http://localhost:' + port);
-});
+server.listen(4200);
