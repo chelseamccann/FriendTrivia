@@ -45,6 +45,9 @@ body{
 
 #future{
     border: 1px solid lightcoral;
+    height: 15rem;
+    position: relative;
+    overflow-y: scroll;
 }
 
 .home-btns{

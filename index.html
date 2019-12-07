@@ -17,24 +17,3 @@
 </body>
 </html>
 
-<script>
-    // var socket = io.connect('127.0.0.1:4200');
-    var socket = io.connect();
-    socket.on('connect', function(data){ // socket.on fired upon successful connection from web browser
-        socket.emit('join', 'Hello World from client'); // callback will then send to the server the hello world message
-    });
-    // socket.on('messages', function(data){
-    //     alert(data);
-    // });
-    socket.on('broad', function(data){ // socket listener which updates our div with the message that was returned
-        if (data){
-            $('#future').append(data+ "<br/>");
-        }
-    });
-
-    $('form').submit(function(e){ // event handler which prevent form submitting and instead sends message to server with values of input field
-        e.preventDefault();
-        var message = $('#chat_input').val();
-        socket.emit('messages', message);
-    });
-</script>
