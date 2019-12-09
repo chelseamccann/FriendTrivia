@@ -41,21 +41,23 @@ startGame = () => {
 getNewQuestion = () => {
     if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
         //go to the end page
-        return window.location.assign("/end.html");
+        // return window.location.assign("/end.html");
+        return;
     }
 
     questionCounter++;
     const questionIdx = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionIdx];
     question.innerText = currentQuestion.question;
-    i = 1
+    
 
-    choices.forEach(choice => {
-        const number = choice.dataset["number"];
-        choice.innerText = currentQuestion["choice"+i];
+    choices.forEach((choice, i) => { // iterating thru buttons to add innertext choices from selected question
         i++;
+        choice.id = i;
+        console.log(choice)
+        choice.innerText = currentQuestion["choice"+i];
     });
-
+    
     availableQuestions.splice(questionIdx, 1);
     acceptingAnswers = true;
 };
@@ -63,14 +65,19 @@ getNewQuestion = () => {
 choices.forEach(choice => {
     choice.addEventListener("click", e => {
         console.log(acceptingAnswers, e.target)
-        if (!acceptingAnswers) return;
+        // if (!acceptingAnswers) return;
         acceptingAnswers = false;
         const selectedChoice = e.target;
-        const selectedAnswer = selectedChoice.dataset["number"];
+        console.log(selectedChoice)
+        const selectedAnswer = selectedChoice.id;
+        console.log(selectedAnswer)
     
         const classToApply = selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
-  
-        selectedChoice.parentElement.classList.add(classToApply);
+        document.getElementById(selectedAnswer).classList.add(classToApply);
+        if (classToApply == "correct"){
+            alert(classToApply);
+        }
+        // selectedChoice.parentElement.classList.add(classToApply);
     
         setTimeout(() => {
             selectedChoice.parentElement.classList.remove(classToApply);
