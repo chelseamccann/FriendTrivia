@@ -1,22 +1,19 @@
 let express = require('express');
 let app = express();
-const path = require('path');
 let server = require('http').createServer(app);
 let io = require('socket.io')(server);
 const PORT = process.env.PORT || 3000; // port listening for heroku
 
-
 app.use("/styles",express.static(__dirname + "/styles")); // allows stylesheets
+app.use("/javascript",express.static(__dirname + "/javascript")); // allows stylesheets
 app.use(express.static(__dirname + '/node_modules'));
 
 app.get('/', function(req, res, next){
     res.sendFile(__dirname + '/index.html');
 });
 
-const game = path.join(__dirname, 'game.js');
 app.get('/game', function(req, res, next){
     res.sendFile(__dirname + '/game.html');
-    res.sendFile(game);
 });
 
 app.get('/scores', function(req, res, next){

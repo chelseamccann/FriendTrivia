@@ -27,28 +27,33 @@ let questions = [
     }
 ]
 
+const CORRECT_BONUS = 10;
+const MAX_QUESTIONS = 3;
+
 startGame = () => {
     questionCounter = 0;
     score = 0;
     availableQuestions = [...questions];
-    console.log(availableQuestions);
+    // console.log(availableQuestions);
     getNewQuestion();
 }
 
 getNewQuestion = () => {
-    if (availableQuesions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+    if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
         //go to the end page
         return window.location.assign("/end.html");
-      }
+    }
 
     questionCounter++;
     const questionIdx = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionIdx];
     question.innerText = currentQuestion.question;
+    i = 1
 
     choices.forEach(choice => {
         const number = choice.dataset["number"];
-        choice.innerText = currentQuestion["choice"+number];
+        choice.innerText = currentQuestion["choice"+i];
+        i++;
     });
 
     availableQuestions.splice(questionIdx, 1);
@@ -57,21 +62,20 @@ getNewQuestion = () => {
 
 choices.forEach(choice => {
     choice.addEventListener("click", e => {
-      if (!acceptingAnswers) return;
+        console.log(acceptingAnswers, e.target)
+        if (!acceptingAnswers) return;
+        acceptingAnswers = false;
+        const selectedChoice = e.target;
+        const selectedAnswer = selectedChoice.dataset["number"];
+    
+        const classToApply = selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
   
-      acceptingAnswers = false;
-      const selectedChoice = e.target;
-      const selectedAnswer = selectedChoice.dataset["number"];
-  
-      const classToApply =
-        selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
-  
-      selectedChoice.parentElement.classList.add(classToApply);
-  
-      setTimeout(() => {
-        selectedChoice.parentElement.classList.remove(classToApply);
-        getNewQuestion();
-      }, 1000);
+        selectedChoice.parentElement.classList.add(classToApply);
+    
+        setTimeout(() => {
+            selectedChoice.parentElement.classList.remove(classToApply);
+            getNewQuestion();
+        }, 1000);
     });
 });
 
