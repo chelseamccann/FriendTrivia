@@ -9,14 +9,14 @@
     <form id="form chat_form">
             <div>
                 <h2 class="title">Questions</h1>
-                <h5 class="title">What is your favorite color?</h5>
+                <h5 class="title" id="question">What is your favorite color?</h5>
                 <div>
-                    <button class="btn">Green</button>
-                    <button class="btn">Purple</button>
+                    <button class="btn choice">Green</button>
+                    <button class="btn choice">Purple</button>
                 </div>
                 <div>
-                    <button class="btn">Yellow</button>
-                    <button class="btn">Red</button>
+                    <button class="btn choice">Yellow</button>
+                    <button class="btn choice">Red</button>
                 </div>
             </div>
     
@@ -27,29 +27,35 @@
                 <div id="future"></div>
             </div>
         </form>
+
         <script src="/jquery/dist/jquery.js"></script>
         <script src="/socket.io/socket.io.js"></script>
-</body>
-</html>
-
-<script>
-        // var socket = io.connect('127.0.0.1:4200');
-        var socket = io.connect();
-        socket.on('connect', function(data){ // socket.on fired upon successful connection from web browser
-            socket.emit('join', 'Hello World from client'); // callback will then send to the server the hello world message
-        });
-        // socket.on('messages', function(data){
-        //     alert(data);
-        // });
-        socket.on('broad', function(data){ // socket listener which updates our div with the message that was returned
-            if (data){
-                $('#future').append(data+ "<br/>");
-            }
-        });
+        <!-- <script src="game.js"></script> -->
+        <script>
+                // var socket = io.connect('127.0.0.1:3000');
+                // var socket = io.connect('http://localhost');
+                let socket = io.connect();
+                // var socket = io();
+                socket.on('connect', function(data){ // socket.on fired upon successful connection from web browser
+                    socket.emit('join', 'Hello World from client'); // callback will then send to the server the hello world message
+                });
+                // socket.on('messages', function(data){
+                //     alert(data);
+                // });
+                socket.on('broad', function(data){ // socket listener which updates our div with the message that was returned
+                    if (data){
+                        $('#future').append(data+ "<br/>");
+                    }
+                });
+            
+                $('form').submit(function(e){ // event handler which prevent form submitting and instead sends message to server with values of input field
+                    e.preventDefault();
+                    var message = $('#chat_input').val();
+                    socket.emit('messages', message);
+                });
+            </script>
+            
+    </body>
+    </html>
     
-        $('form').submit(function(e){ // event handler which prevent form submitting and instead sends message to server with values of input field
-            e.preventDefault();
-            var message = $('#chat_input').val();
-            socket.emit('messages', message);
-        });
-    </script>
+    

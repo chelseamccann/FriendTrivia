@@ -1,8 +1,10 @@
-var express = require('express');
-var app = express();
-var server = require('http').createServer(app);
-var io = require('socket.io')(server);
+let express = require('express');
+let app = express();
+const path = require('path');
+let server = require('http').createServer(app);
+let io = require('socket.io')(server);
 const PORT = process.env.PORT || 3000; // port listening for heroku
+
 
 app.use("/styles",express.static(__dirname + "/styles")); // allows stylesheets
 app.use(express.static(__dirname + '/node_modules'));
@@ -11,8 +13,10 @@ app.get('/', function(req, res, next){
     res.sendFile(__dirname + '/index.html');
 });
 
+const game = path.join(__dirname, 'game.js');
 app.get('/game', function(req, res, next){
     res.sendFile(__dirname + '/game.html');
+    res.sendFile(game);
 });
 
 app.get('/scores', function(req, res, next){
@@ -24,7 +28,7 @@ io.on('connection', function(client){ // listening for connections
 
     client.on('join', function(data){ // waits for a message from the client for 'join' - then log it to the console
         console.log(data);
-        // client.emit('messages', 'Hello from server'); // sends a message back to the client that just connect
+        client.emit('messages', 'Hello from server'); // sends a message back to the client that just connect
     });
 
     client.on('messages', function(data){
@@ -34,7 +38,9 @@ io.on('connection', function(client){ // listening for connections
 
 });
 
-app.listen(PORT, function() {
-    console.log(`Listening on Port ${PORT}`);
-  });
-// server.listen(4200);
+// app.listen(PORT, function() {
+//     console.log(`Listening on Port ${PORT}`);
+//   });
+server.listen(PORT, function(){
+    console.log(`listening on ${PORT}`)
+});
