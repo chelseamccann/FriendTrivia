@@ -20,6 +20,10 @@ app.get('/scores', function(req, res, next){
     res.sendFile(__dirname + '/scores.html');
 });
 
+app.get('/end', function(req, res, next){
+    res.sendFile(__dirname + '/end.html');
+});
+
 io.on('connection', function(client){ // listening for connections
     console.log('Client connected...'); // once a connection is received, it reports this message to the console
 

@@ -7,6 +7,8 @@ let acceptingAnswers = false;
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
+let correct = 0;
+let incorrect = 0;
 
 let questions = [
     {
@@ -41,8 +43,9 @@ startGame = () => {
 getNewQuestion = () => {
     if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
         //go to the end page
-        // return window.location.assign("/end.html");
-        return;
+        return window.location.assign("/end");
+        // document.getElementById("correct").innerText = correct;
+        // document.getElementById("incorrect").innerText = incorrect;
     }
 
     questionCounter++;
@@ -54,7 +57,6 @@ getNewQuestion = () => {
     choices.forEach((choice, i) => { // iterating thru buttons to add innertext choices from selected question
         i++;
         choice.id = i;
-        console.log(choice)
         choice.innerText = currentQuestion["choice"+i];
     });
     
@@ -64,19 +66,15 @@ getNewQuestion = () => {
 
 choices.forEach(choice => {
     choice.addEventListener("click", e => {
-        console.log(acceptingAnswers, e.target)
         // if (!acceptingAnswers) return;
         acceptingAnswers = false;
         const selectedChoice = e.target;
-        console.log(selectedChoice)
         const selectedAnswer = selectedChoice.id;
-        console.log(selectedAnswer)
     
         const classToApply = selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
         document.getElementById(selectedAnswer).classList.add(classToApply);
-        if (classToApply == "correct"){
-            alert(classToApply);
-        }
+
+        classToApply == "correct" ? correct++ : incorrect++; // increment score if correct here
         // selectedChoice.parentElement.classList.add(classToApply);
     
         setTimeout(() => {
