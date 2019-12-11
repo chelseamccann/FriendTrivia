@@ -62,3 +62,7 @@ body{
     transform: translate(-0.1rem);
     transition: transform 150ms;
 }
+
+.correct{
+    background-color: purple;
+}

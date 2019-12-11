@@ -66,7 +66,7 @@ getNewQuestion = () => {
 
 choices.forEach(choice => {
     choice.addEventListener("click", e => {
-        // if (!acceptingAnswers) return;
+        if (!acceptingAnswers) return;
         acceptingAnswers = false;
         const selectedChoice = e.target;
         const selectedAnswer = selectedChoice.id;
@@ -78,7 +78,9 @@ choices.forEach(choice => {
         // selectedChoice.parentElement.classList.add(classToApply);
     
         setTimeout(() => {
-            selectedChoice.parentElement.classList.remove(classToApply);
+            document.getElementById(selectedAnswer).classList.remove(classToApply);
+            // selectedChoice.parentElement.classList.remove(classToApply);
+            // console.log(selectedChoice.parentElement, selectedAnswer)
             getNewQuestion();
         }, 1000);
     });
