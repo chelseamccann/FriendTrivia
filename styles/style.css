@@ -64,5 +64,10 @@ body{
 }
 
 .correct{
-    background-color: purple;
+    background-color: greenyellow;
+}
+
+.incorrect{
+    background-color:rgb(180, 0, 0);
+    color: white;
 }
