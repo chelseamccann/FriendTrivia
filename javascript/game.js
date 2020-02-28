@@ -44,8 +44,6 @@ getNewQuestion = () => {
     if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
         //go to the end page
         return window.location.assign("/end");
-        // document.getElementById("correct").innerText = correct;
-        // document.getElementById("incorrect").innerText = incorrect;
     }
 
     questionCounter++;
@@ -53,8 +51,8 @@ getNewQuestion = () => {
     currentQuestion = availableQuestions[questionIdx];
     question.innerText = currentQuestion.question;
     
-
-    choices.forEach((choice, i) => { // iterating thru buttons to add innertext choices from selected question
+    // iterating thru buttons to add innertext choices from selected question
+    choices.forEach((choice, i) => { 
         i++;
         choice.id = i;
         choice.innerText = currentQuestion["choice"+i];
@@ -74,13 +72,11 @@ choices.forEach(choice => {
         const classToApply = selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
         document.getElementById(selectedAnswer).classList.add(classToApply);
 
-        classToApply == "correct" ? correct++ : incorrect++; // increment score if correct here
-        // selectedChoice.parentElement.classList.add(classToApply);
+        // increment score if correct 
+        classToApply == "correct" ? correct++ : incorrect++; 
     
         setTimeout(() => {
             document.getElementById(selectedAnswer).classList.remove(classToApply);
-            // selectedChoice.parentElement.classList.remove(classToApply);
-            // console.log(selectedChoice.parentElement, selectedAnswer)
             getNewQuestion();
         }, 1000);
     });

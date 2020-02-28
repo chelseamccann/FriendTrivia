@@ -39,9 +39,7 @@ io.on('connection', function(client){ // listening for connections
 
 });
 
-// app.listen(PORT, function() {
-//     console.log(`Listening on Port ${PORT}`);
-//   });
+
 server.listen(PORT, function(){
     console.log(`listening on ${PORT}`)
 });
