@@ -10,7 +10,8 @@ let availableQuestions = [];
 let correct = 0;
 let incorrect = 0;
 
-let questions = [
+// Manually created question bank - future implement quiz upon new game to create question bank
+let questionBank = [
     {
         question: "What is his favorite color?",
         choice1: "Green",
@@ -26,6 +27,22 @@ let questions = [
         choice3: "Lasagna and chicken parm",
         choice4: "Pretzels and twix",
         answer: 3
+    },
+    {
+        question: "What is his favorite sport?",
+        choice1: "Basketball",
+        choice2: "Soccer",
+        choice3: "Football",
+        choice4: "Baseball",
+        answer: 1
+    },
+    {
+        question: "What is his favorite movie?",
+        choice1: "Blow",
+        choice2: "Catch Me If You Can",
+        choice3: "Remember the Titans",
+        choice4: "Coach Carter",
+        answer: 1
     }
 ]
 
@@ -35,8 +52,7 @@ const MAX_QUESTIONS = 3;
 startGame = () => {
     questionCounter = 0;
     score = 0;
-    availableQuestions = [...questions];
-    // console.log(availableQuestions);
+    availableQuestions = [...questionBank];
     getNewQuestion();
 }
 
