@@ -49,6 +49,7 @@ let questionBank = [
 const CORRECT_BONUS = 10;
 const MAX_QUESTIONS = 3;
 
+// Start
 startGame = () => {
     questionCounter = 0;
     score = 0;
@@ -56,6 +57,7 @@ startGame = () => {
     getNewQuestion();
 }
 
+// If there are any new questions or questions asked is less than max questions, show new question
 getNewQuestion = () => {
     if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
         //go to the end page
@@ -78,6 +80,7 @@ getNewQuestion = () => {
     acceptingAnswers = true;
 };
 
+// If correct answer was clicked, add correct class to show styling, else add incorrect class for styling
 choices.forEach(choice => {
     choice.addEventListener("click", e => {
         if (!acceptingAnswers) return;
@@ -91,6 +94,7 @@ choices.forEach(choice => {
         // increment score if correct 
         classToApply == "correct" ? correct++ : incorrect++; 
     
+        // set timeout to show css then go to next question
         setTimeout(() => {
             document.getElementById(selectedAnswer).classList.remove(classToApply);
             getNewQuestion();
