@@ -37,7 +37,7 @@ let questionBank = [
         answer: 1
     },
     {
-        question: "What is his favorite movie?",
+        question: "What is your friend's favorite movie?",
         choice1: "Blow",
         choice2: "Catch Me If You Can",
         choice3: "Remember the Titans",
