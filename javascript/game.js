@@ -13,7 +13,7 @@ let incorrect = 0;
 // Manually created question bank - future implement quiz upon new game to create question bank
 let questionBank = [
     {
-        question: "What is his favorite color?",
+        question: "What is your friend's favorite color?",
         choice1: "Green",
         choice2: "Red",
         choice3: "Orange",
@@ -21,7 +21,7 @@ let questionBank = [
         answer: 2
     },
     {
-        question: "What are two of his favorite foods?",
+        question: "What are two of your friend's favorite foods?",
         choice1: "Wings and oranges",
         choice2: "Ice cream and crackers",
         choice3: "Lasagna and chicken parm",
@@ -29,7 +29,7 @@ let questionBank = [
         answer: 3
     },
     {
-        question: "What is his favorite sport?",
+        question: "What is your friend's favorite sport?",
         choice1: "Basketball",
         choice2: "Soccer",
         choice3: "Football",
