@@ -20,7 +20,7 @@
                 </div>
             </div>
     
-            <div>
+            <div id="chat">
                 <h2>Chat</h1>
                 <input id="chat_input" type="text">
                 <input type="submit" value="Send">
@@ -31,23 +31,23 @@
         <script src="/jquery/dist/jquery.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script>
-                // var socket = io.connect('127.0.0.1:3000');
-                // var socket = io.connect('http://localhost');
+            
                 let socket = io.connect();
-                // var socket = io();
-                socket.on('connect', function(data){ // socket.on fired upon successful connection from web browser
-                    socket.emit('join', 'Hello World from client'); // callback will then send to the server the hello world message
+                // socket.on fired upon successful connection from web browser
+                socket.on('connect', function(data){ 
+                    // callback will then send to the server the hello world message
+                    socket.emit('join', 'Hello World from client'); 
                 });
-                // socket.on('messages', function(data){
-                //     alert(data);
-                // });
-                socket.on('broad', function(data){ // socket listener which updates our div with the message that was returned
+
+                // socket listener which updates our div with the message that was returned
+                socket.on('broad', function(data){ 
                     if (data){
                         $('#future').append(data+ "<br/>");
                     }
                 });
             
-                $('form').submit(function(e){ // event handler which prevent form submitting and instead sends message to server with values of input field
+                // event handler which prevent form submitting and instead sends message to server with values of input field
+                $('form').submit(function(e){ 
                     e.preventDefault();
                     var message = $('#chat_input').val();
                     socket.emit('messages', message);

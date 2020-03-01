@@ -60,8 +60,7 @@ startGame = () => {
 // If there are any new questions or questions asked is less than max questions, show new question
 getNewQuestion = () => {
     if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
-        //go to the end page
-        return window.location.assign("/end");
+        alert(`Game over! You got ${correct} right!`)
     }
 
     questionCounter++;
@@ -101,5 +100,36 @@ choices.forEach(choice => {
         }, 1000);
     });
 });
+
+var modal = function(){
+
+    var modal = document.getElementById("simple-modal");
+    var closeBtn = document.getElementsByClassName("close-btn")[0];
+
+    closeBtn.addEventListener("click", () => {
+        d3.select("#modal-school").node().remove()
+        while(d3.select(".modal-body-p").node()){
+            d3.select(".modal-body-p").node().remove()
+            d3.select("#wordcloud").node().remove()
+            // d3.select("#bob").node().remove()
+            d3.select("#pp").node().remove()
+        }
+        modal.style.display = "none";
+    });
+
+    window.addEventListener("click", (e) => {
+        if(e.target === modal){
+            d3.select("#modal-school").node().remove()
+            while(d3.select(".modal-body-p").node()){
+                d3.select(".modal-body-p").node().remove()
+                d3.select("#wordcloud").node().remove()
+                // d3.select("#bob").node().remove()
+                d3.select("#pp").node().remove()
+            }
+            modal.style.display = 'none';
+        }
+    })
+
+}
 
 startGame();
