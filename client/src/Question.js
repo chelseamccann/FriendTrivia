@@ -2,13 +2,14 @@ import React from 'react';
 import './Question.css';
 // import socketIOClient from 'socket.io-client';
 
-// If correct answer was question clicked, add correct class to show styling, else add incorrect class for styling
+// Handles one question at a time then invokes new question, first adding correct class to show appropriate styling
 function Question({question, acceptingAnswers, getNewQuestion, correct, setCorrect}){
 
     const questionTitle = question.question
     const choices = [{1: question.choice1}, {2: question.choice2}, {3: question.choice3}, {4: question.choice4}]
     const answer = question.answer
 
+    // Handle the choice that was clicked on to check if correct / incorrect
     const handleClick = (e) => {
         e.preventDefault();
         let selectedAnswer = parseInt(e.target.id)

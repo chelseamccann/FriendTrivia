@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
 import Question from './Question';
 // import socketIOClient from 'socket.io-client';
 
+// Begin game and fetch all questions from express, sending down each question to the child component to determine correctness
+// To implement functionality to first take in questionnaire from user then utilize those questions in game
 export const Game = () => {
-  // const endpoint = "localhost:4001";
   const [availableQuestions, setAvailableQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState({});
   const [fetched, setFetched] = useState(false);
@@ -12,7 +12,6 @@ export const Game = () => {
   const [questionCounter, setQuestionCounter] = useState(0);
   const [correct, setCorrect] = useState(1);
   const MAX_QUESTIONS = 3;
-  // let score = 0;
 
   // Fetch opening price and compare to find color to assign
   useEffect(() => {
@@ -25,6 +24,7 @@ export const Game = () => {
     })
   }, []);
 
+  ///////////////////// Functionality for sockets to be added /////////////////////
   // useEffect(() => {
   //   const socket = socketIOClient(endpoint);
   //   setInterval(send(), 1000)
@@ -38,8 +38,9 @@ export const Game = () => {
   //   const socket = socketIOClient(endpoint);
   //   socket.emit('change question', currentQuestion) // question has changed
   // };
-  /////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////
 
+  // function to get new question if there are any left / haven't hit max yet
   const getNewQuestion = () => {
     if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
         alert(`Game over! You got ${correct} right!`)
